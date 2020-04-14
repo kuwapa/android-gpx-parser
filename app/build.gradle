@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 28
@@ -26,5 +28,6 @@ dependencies {
     // You should use the commented out line below in your application.
     // We depend on the source directly here so that development is easier.
     implementation project(':parser')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     // implementation 'io.ticofab.androidgpxparser:parser:x.y.z'
 }
