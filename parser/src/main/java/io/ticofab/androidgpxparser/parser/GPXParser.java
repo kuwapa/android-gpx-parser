@@ -377,7 +377,7 @@ public class GPXParser {
     }
 
     private Author readAuthor(XmlPullParser parser) throws XmlPullParserException, IOException {
-        Author.Builder authorBuilder = new Author.Builder();
+        Author author = new Author();
 
         parser.require(XmlPullParser.START_TAG, namespace, TAG_AUTHOR);
         while (loopMustContinue(parser.next())) {
@@ -387,13 +387,13 @@ public class GPXParser {
             String name = parser.getName();
             switch (name) {
                 case TAG_NAME:
-                    authorBuilder.setName(readString(parser, TAG_NAME));
+                    author.setName(readString(parser, TAG_NAME));
                     break;
                 case TAG_EMAIL:
-                    authorBuilder.setEmail(readEmail(parser));
+                    author.setEmail(readEmail(parser));
                     break;
                 case TAG_LINK:
-                    authorBuilder.setLink(readLink(parser));
+                    author.setLink(readLink(parser));
                     break;
                 default:
                     skip(parser);
@@ -401,7 +401,7 @@ public class GPXParser {
             }
         }
         parser.require(XmlPullParser.END_TAG, namespace, TAG_AUTHOR);
-        return authorBuilder.build();
+        return author;
     }
 
     private Email readEmail(XmlPullParser parser) throws IOException, XmlPullParserException {
